@@ -9,10 +9,11 @@ public class MouseHandler : MonoBehaviour {
     private GameObject selectedTile;
     private GameObject playerTile;
     private GameObject player;
-    
 
     private Vector3 lastMousePosition;
     private float scrollVelocity;
+
+    private GameObject grabbed = null;
 
     // Use this for initialization
     void Start () {
@@ -61,21 +62,36 @@ public class MouseHandler : MonoBehaviour {
             }
         }
 
+        if(selectedTile!=null && grabbed != null) {
+            grabbed.transform.position = selectedTile.transform.position + Vector3.up;
+        }
+
         // ==========================================================
         // === Handling Clicks
         // ==========================================================
 
         if (Input.GetKeyDown(KeyCode.Mouse0)) {
-            foreach (GameObject t in tiles) {
+            Debug.Log("Down");
+            if (grabbed != null && selectedTile != null) {
+                grabbed.transform.position = selectedTile.transform.position + Vector3.up;
+                selectedTile.GetComponent<NeighboringTile>().contains = grabbed;
+            }
+            /*foreach (GameObject t in tiles) {
                 Highlighter h = t.GetComponent<Highlighter>();
                 if (h) {
                     h.setLocked(false);
                     h.setActive(false);
                 }
-            }
+            }//*/
 
-        } else if (Input.GetKeyUp(KeyCode.Mouse0))
-            player.GetComponent<MovementHandler>().moveTowards(selectedTile);
+        } else if (Input.GetKeyUp(KeyCode.Mouse0)) {
+            Debug.Log("Up");
+            if (grabbed == null)
+                player.GetComponent<MovementHandler>().moveTowards(selectedTile);
+            else if (selectedTile.GetComponent<NeighboringTile>().contains == grabbed) {
+                grabbed = null;
+            }
+        }
 
 
 
@@ -89,5 +105,10 @@ public class MouseHandler : MonoBehaviour {
         cameraPosition.y = Math.Min(20, cameraPosition.y);
         Camera.main.transform.position = cameraPosition;
         lastMousePosition = Input.mousePosition;
+    }
+
+    public void selectBlock(GameObject item) {
+        Debug.Log("Click");
+        grabbed = Instantiate(item);
     }
 }
