@@ -12,12 +12,13 @@ public class TowerCreator : MonoBehaviour {
     public Vector2 startingPosition;
     public GameObject player;
 
-    private bool _connected = false;
     // Use this for initialization
     void Start() {
         GameObject lastRoom = null;
         for (int i = 0; i < floors; i++) {
-            GameObject room = (GameObject)Instantiate(roomCreator, transform.position + Vector3.down * floorHeight * i, Quaternion.identity);
+			GameObject room = (GameObject)Instantiate(roomCreator, transform.position + Vector3.down * floorHeight * i, Quaternion.identity);
+			RoomCreator rc = room.GetComponent<RoomCreator>();
+			rc.floorHeight = floorHeight;
             room.transform.parent = transform;
 
             if (roof != null) {
@@ -26,8 +27,11 @@ public class TowerCreator : MonoBehaviour {
                 roof = null;
             }
 
+			if (i > 0) {
+				lastRoom.GetComponent<RoomCreator> ().roomBelow = rc;
+			}
+
             if (i == startingFloor) {
-                RoomCreator rc = room.GetComponent<RoomCreator>();
                 rc.startingPosition = startingPosition;
                 rc.player = Instantiate(player);
                 /*if (rc) {

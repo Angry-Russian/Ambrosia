@@ -94,6 +94,16 @@ public class MouseHandler : MonoBehaviour {
         }
 
 
+		// ==========================================================
+		// scrollwheel zoom
+		// ==========================================================
+
+		float zDelta = Input.GetAxis ("Mouse ScrollWheel");
+		Camera.main.orthographicSize = Mathf.Max(5, Mathf.Min(Camera.main.orthographicSize + zDelta, 14));
+
+		// ==========================================================
+		// camera drag-pan
+		// ==========================================================
 
         float delta = (Input.mousePosition - lastMousePosition).y * Time.deltaTime;
         if (Input.GetMouseButton(1)) {
@@ -101,6 +111,7 @@ public class MouseHandler : MonoBehaviour {
         } else {
             scrollVelocity *= 0.95f;
         }
+
         Vector3 cameraPosition = Camera.main.transform.position + Vector3.down * scrollVelocity;
         cameraPosition.y = Math.Min(20, cameraPosition.y);
         Camera.main.transform.position = cameraPosition;
