@@ -13,7 +13,6 @@ public class NeighboringTile : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
 	}
 
     public bool isPassable() {
@@ -23,16 +22,16 @@ public class NeighboringTile : MonoBehaviour {
     public GameObject getNeighbor(int n) {
         if (neighbors.Length > 0)
             return neighbors[n % neighbors.Length];
-        else return null;
+        return null;
     }
 
     public IEnumerable getNeighbors() {
-        ArrayList result = new ArrayList();
-        foreach (GameObject n in neighbors) {
+        var result = new ArrayList();
+        foreach (var n in neighbors) {
 
             if (!n) continue;
 
-            NeighboringTile nt = n.GetComponent<NeighboringTile>();
+            var nt = n.GetComponent<NeighboringTile>();
             if (nt.contains == null)
                 result.Add(n);
         }

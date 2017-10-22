@@ -5,10 +5,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 424242}
-  - 114: {fileID: 11493086}
+  - component: {fileID: 424242}
+  - component: {fileID: 11493086}
   m_Layer: 0
   m_Name: Room Creator
   m_TagString: Untagged
@@ -28,6 +28,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11493086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -41,10 +42,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roof: {fileID: 0}
   pillar: {fileID: 110694, guid: 371386ebb9c75e14cad586acd0ca7df4, type: 2}
-  tile: {fileID: 174966, guid: ece65db7e29fd894e8ccfe1b9e2f3b93, type: 2}
+  tile: {fileID: 1001110969928986, guid: 60992d1830f9ca849958e1e8ce67128a, type: 2}
+  stepTile: {fileID: 174966, guid: ece65db7e29fd894e8ccfe1b9e2f3b93, type: 2}
   size: {x: 9, y: 9}
   startingPosition: {x: 0, y: 0}
   player: {fileID: 0}
+  roomBelow: {fileID: 0}
+  floorHeight: 8
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
