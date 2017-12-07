@@ -44,7 +44,7 @@ MonoBehaviour:
   pillar: {fileID: 110694, guid: 371386ebb9c75e14cad586acd0ca7df4, type: 2}
   tile: {fileID: 1001110969928986, guid: 60992d1830f9ca849958e1e8ce67128a, type: 2}
   stepTile: {fileID: 174966, guid: ece65db7e29fd894e8ccfe1b9e2f3b93, type: 2}
-  size: {x: 9, y: 9}
+  size: {x: 7, y: 7}
   startingPosition: {x: 0, y: 0}
   player: {fileID: 0}
   roomBelow: {fileID: 0}
